@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    outline: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background: #6a1b9a;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+/* Form */
+
+form {
+    width: 100%;
+    max-width: 400px;
+    /* display: flex; */
+    /* display: inline-block; */
+}
+
+input:not(#inputFile) {
+    margin-top: 2%;
+    flex: 1;
+    width: 400px;
+    height: 40px;
+    padding: 0 20px;
+    background: #fff;
+    border: 0;
+    font-size: 16px;
+    color: #444;
+    border-radius: 3px;
+}
+
+textarea {
+    margin-top: 2%;
+    flex: 1;
+    width: 400px;
+    height: 100px;
+    padding: 20px;
+    background: #fff;
+    border: 0;
+    font-size: 16px;
+    color: #444;
+    border-radius: 3px;
+    resize: none;
+}
+
+button {
+    margin-top: 2%;
+    width: 100px;
+    height: 55px;
+    background: #00c853;
+    border: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* Alerts */
+
+.alert-danger {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.alert-success {
+    padding: 20px;
+    background-color: #4caf50; /* Red */
+    color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+.closebtn:hover {
+    color: black;
+}
