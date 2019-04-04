@@ -16,5 +16,6 @@
     <script src="{{asset('assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.mask.js')}}"></script>
     <script src="{{asset('assets/js/masks/index.js')}}"></script>
+    <script src="{{asset('assets/js/scripts/getIpSender.js')}}"></script>
 </body>
 </html>

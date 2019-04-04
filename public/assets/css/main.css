@@ -80,7 +80,7 @@ button {
 
 .alert-danger {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: #f44336;
     color: white;
     margin-bottom: 15px;
     font-size: 18px;
@@ -88,7 +88,15 @@ button {
 
 .alert-success {
     padding: 20px;
-    background-color: #4caf50; /* Red */
+    background-color: #4caf50;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.alert-warning {
+    padding: 20px;
+    background-color: #ff9800;
     color: white;
     margin-bottom: 20px;
     font-size: 18px;

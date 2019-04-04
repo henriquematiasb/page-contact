@@ -19,7 +19,8 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('message');
-            $table->string('attachedFile');
+            $table->string('attached_file');
+            $table->string('ip_sender');
             $table->timestamps();
         });
     }
