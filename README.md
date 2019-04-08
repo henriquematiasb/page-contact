@@ -1,3 +1,3 @@
 # Page Contact
 
-[![Version](https://badge.fury.io/rb/limarka.svg)](https://badge.fury.io/rb/limarka)
+Página de contato desenvolvida em Laravel 5.8
