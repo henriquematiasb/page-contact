@@ -55,6 +55,12 @@ MAIL_ENCRYPTION=tls
 $ php artisan key:generate
 ```
 
+5. Execute o comando para criação das tabelas no banco:
+
+```
+$ php artisan migrate
+```
+
 6. Ainda na raiz do projeto execute o seguinte comando:
 
 ```
