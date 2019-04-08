@@ -1,6 +1,6 @@
 # Page Contact
 
-Página de contato desenvolvida em Laravel 5.8 .
+Página de contato desenvolvida em Laravel 5.8, após o cadastro os dados são enviados para um gmail especificado.
 
 ## Dependências
 A princípio é necessário ter instalado o [Composer](https://getcomposer.org/)(gerenciador de pacotes do PHP)  em sua máquina, além do git instalado para clone deste código.
@@ -39,7 +39,7 @@ MAIL_PASSWORD=senha do e-mail
 MAIL_ENCRYPTION=tls
 ```
 
-3. Vá até o arquivo `mail.php`, e altere as seguintes informações:
+3. Vá até o arquivo `mail.php` em `/config`, e altere as seguintes informações:
 ```
 'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'e-mail informado acima'),
