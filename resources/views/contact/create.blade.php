@@ -1,7 +1,7 @@
 @extends('layouts/base')
 
 @section('content')
-    <div class="form-content">
+    <div class="alerts">
         @if($errors->any())
             <div class="alert-danger">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
@@ -11,7 +11,6 @@
                         {{ $error }}
                     </li>
                     @endforeach
-
                 </ul>
             </div>
         @elseif(session()->has('success'))
@@ -25,13 +24,15 @@
                 {{ session('warning') }}
             </div>
         @endif
-        <form method="post" enctype="multipart/form-data" action="{{ route('contacts.store') }}">
+    </div>
+    <div class="container-form">
+        <form method="post" enctype="multipart/form-data" action="{{route('contact.store')}}">
             @csrf
-                <input type="text" name="name" id="inputName" placeholder="Seu nome">
-                <input type="text" name="email" id="inputEmail" placeholder="Seu melhor email">
-                <input type="tel" name="phone" class="phone" id="inputPhone" placeholder="Seu telefone">
-                <textarea id="inputMessage" name="message" placeholder="Sua mensagem" rows="5"></textarea>
-                <input type="file" name="attachedFile" id="inputFile">
+                <input type="text" name="name" id="name" placeholder="Seu nome">
+                <input type="text" name="email" id="email" placeholder="Seu melhor email">
+                <input type="tel" name="phone" id="phone" placeholder="Seu telefone">
+                <textarea name="message" id="message" placeholder="Sua mensagem" rows="6"></textarea>
+                <input type="file" name="attachedFile" id="attachedFile">
                 <button type="submit">Enviar</button>
         </form>
     </div>

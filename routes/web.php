@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('contacts', 'ContactController');
+Route::prefix('contact')->group(function () {
+    Route::get('create', 'ContactController@create')->name('contact.create');
+    Route::post('store', 'ContactController@store')->name('contact.store');
+});

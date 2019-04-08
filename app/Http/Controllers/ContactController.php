@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\ValidateStoreContact;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Storage;
-
+use Mail;
 use App\Contact;
+use App\Http\Requests\ValidateStoreContact;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+
 
 class ContactController extends Controller
 {
@@ -32,116 +32,53 @@ class ContactController extends Controller
         $generatedName = self::generateSubmittedFileName($attachedFile);
         $upload = $attachedFile->storeAs('uploads', $generatedName);
 
-        $path = Storage::url($generatedName);
+        $pathFile = Storage::url($generatedName);
 
-        return $path;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+        return $pathFile;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function sendEmailSignUp($contact) {
+        Mail::send('mail.mailsend', ['informationRegistered' => $contact], function($m) {
+            $m->from(\Config::get('mail.from.address'));
+            $m->to('carlosmatias100@gmail.com');
+            $m->subject('Novo cadastro de contato');
+        });
+
+        return true;
+    }
+
     public function create()
     {
         return view('contact/create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(ValidateStoreContact $request)
     {
-            if ($request->hasFile('attachedFile') && $request->file('attachedFile')->isValid()) {
-                try {
-                    $uploadResult = self::uploadFile($request->attachedFile);
-                } catch (\Throwable $th) {
-                    return redirect()
-                        ->route('contacts.create')
-                        ->with('warning', 'Erro interno. Por favor, tente em instantes');
-                }
+        $currentDate = date('Y-m-d H:i:s');
+        try {
+            $uploadResult = self::uploadFile($request->attachedFile);
 
-            }
+            $contact = $this->contact->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'message' => $request->message,
+                'attached_file' => $uploadResult,
+                'sender_ip' => $request->ip(),
+                'shipping_date' => $currentDate,
+            ]);
 
-            try {
-                $contact = $this->contact->create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'phone' => $request->phone,
-                    'message' => $request->message,
-                    'attached_file' => $uploadResult,
-                    'ip_sender' => 'teste',
-                ]);
-                if ($contact) {
-                    return redirect()
-                        ->route('contacts.create')
-                        ->with('success', 'Cadastro efetuado com sucesso!');
+            $sendMailResult = self::sendEmailSignUp($contact);
 
-                    dd($uploadResult);
-                }
-
-
-            } catch (\Exception $ex) {
+            if ($uploadResult && $contact && $sendMailResult) {
                 return redirect()
-                    ->route('contacts.create')
-                    ->with('warning', 'Erro interno. Por favor, tente em instantes');
+                    ->route('contact.create')
+                    ->with('success', 'Cadastro efetuado com sucesso!');
             }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('contact.create')
+                ->with('warning', 'Erro interno. Por favor, tente em instantes');
+        }
     }
 }

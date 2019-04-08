@@ -18,10 +18,10 @@ class CreateContactsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('message');
+            $table->string('message', 220);
             $table->string('attached_file');
-            $table->string('ip_sender');
-            $table->timestamps();
+            $table->string('sender_ip');
+            $table->datetime('shipping_date');
         });
     }
 

@@ -38,7 +38,7 @@ class ValidateStoreContact extends FormRequest
                     $size = intval($value->getSize());
                     $valueDefault = 500000;
                     if ($size > $valueDefault) {
-                        return $fail('O Tamanho máximo do arquivo para upload é de 500MB!');
+                        return $fail('O tamanho máximo do arquivo para envio é de 500MB, tente novamente');
                     }
                 },
             ],
@@ -55,13 +55,13 @@ class ValidateStoreContact extends FormRequest
             'email.unique' => 'O e-mail informado já foi cadastrado',
 
             'phone.required'  => 'Por favor, informe seu telefone',
-            'phone.regex' => 'O telefone informado é inválidom por favor tente novamente',
+            'phone.regex' => 'O telefone informado é inválido, por favor tente novamente',
 
             'message.required'  => 'A mensagem é obrigatória',
 
-            'attachedFile.required' => 'O campo arquivo para Upload é obrigatório!',
-            'attachedFile.file' => 'O campo arquivo para Upload tem que conter um arquivo!',
-            'attachedFile.mimes' => 'O arquivo anexado deve ser um arquivo .pdf, .doc, .docx, .odt ou .txt!',
+            'attachedFile.required' => 'É necessário anexar um arquivo, por favor verifique',
+            'attachedFile.file' => 'O arquivo anexado deve ser um arquivo válido    ',
+            'attachedFile.mimes' => 'O arquivo anexado deve ser um arquivo .pdf, .doc, .docx, .odt ou .txt',
 
         ];
     }

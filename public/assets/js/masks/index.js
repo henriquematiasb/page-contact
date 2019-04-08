@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".phone").each(function(i, el) {
+    $("#phone").each(function(i, el) {
         $("#" + el.id).mask("(00) 00000-0000");
     });
     function updateMask() {
@@ -13,5 +13,5 @@ $(document).ready(function() {
         }
         $(this).on("blur", updateMask);
     }
-    $(".phone").on("blur", updateMask);
+    $("#phone").on("blur", updateMask);
 });
