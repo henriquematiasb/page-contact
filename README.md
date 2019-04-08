@@ -42,9 +42,13 @@ MAIL_ENCRYPTION=tls
 3. Vá até o arquivo `mail.php` em `/config`, e altere as seguintes informações:
 ```
 'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'e-mail informado acima'),
+        'address' => env('MAIL_FROM_ADDRESS', 'e-mail para envio'),
         'name' => env('MAIL_FROM_NAME', 'nome do e-mail'),
 ],
+```
+
+```
+'to' => 'e-mail de destino',
 ```
 
 4. Acesse o gmail escolhido e na sessão de segurança, habilite o acesso a Apps menos seguros.
