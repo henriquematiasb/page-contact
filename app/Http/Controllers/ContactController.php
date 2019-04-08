@@ -40,7 +40,7 @@ class ContactController extends Controller
     public function sendEmailSignUp($contact) {
         Mail::send('mail.mailsend', ['informationRegistered' => $contact], function($m) {
             $m->from(\Config::get('mail.from.address'));
-            $m->to('carlosmatias100@gmail.com');
+            $m->to(\Config::get('mail.to'));
             $m->subject('Novo cadastro de contato');
         });
 
