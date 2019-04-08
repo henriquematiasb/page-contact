@@ -1,3 +1,3 @@
-# Page Contact
+## Page Contact
 
 Página de contato desenvolvida em Laravel 5.8
