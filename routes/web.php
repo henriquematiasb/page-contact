@@ -10,12 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ContactController@create')->name('contact.create');
 
 Route::prefix('contact')->group(function () {
-    Route::get('create', 'ContactController@create')->name('contact.create');
     Route::post('store', 'ContactController@store')->name('contact.store');
 });
